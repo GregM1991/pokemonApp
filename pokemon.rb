@@ -46,6 +46,12 @@ def randomize_ai_pokemon(arr)
     arr[rand(arr.length)]
 end
 
+########### User Attacks AI ###########
+
+# def user_attack(attack, health)
+#     health - attack
+# end
+
 #################### BEGIN APPLICATION RUN ####################
 
 p "Welcome to the Pokémon Stadium, where the fiercest trainers do battle! HA!"
@@ -71,7 +77,32 @@ when "Squirtle"
 end
 
 ai_pokemon = randomize_ai_pokemon(pokemon_array)
+p "The enemy trainer has chosen #{ai_pokemon.name}!"
 
-curr_choice = player_pokemon.attacks
-curr_attack = prompt.select("It's your turn young Master Trainer! Attack!", curr_choice)
+ai_attack_key_array = ai_pokemon.attacks.values
+
+player_turn = true
+while pokemon_is_defeated == false
+    if player_turn == true
+        curr_choice = player_pokemon.attacks
+        curr_player_attack = prompt.select("It's your turn young Master Trainer! Attack!", curr_choice)
+        ai_pokemon.health -= curr_player_attack
+        p "You hit the opponents #{ai_pokemon.name} for #{curr_player_attack} damage. #{ai_pokemon.name}'s health is now #{ai_pokemon.health}"
+        if ai_pokemon.health <= 0
+            pokemon_is_defeated = true
+        else
+            player_turn = false
+        end
+    else
+        # THIS SENTENCE IS THROWING AN ERROR BECAUSE IT EQUATES TO NIL
+        curr_ai_attack = ai_attack_key_array[rand(ai_attack_key_array.length - 1)]
+        player_pokemon.health -= curr_ai_attack
+        p player_pokemon.health
+        if player_pokemon.health <= 0
+            pokemon_is_defeated = true
+        else
+            player_turn = true
+        end
+    end
+end
 
