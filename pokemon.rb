@@ -48,8 +48,26 @@ end
 
 ########### User Attacks AI ###########
 
-# def user_attack(attack, health)
-#     health - attack
+# def display_attack_result_player(p_name, ai_name, attack, health)
+#     health -= attack
+#     if health <= 0
+#         p "You have defeated by the enemy's #{ai_name}, congratulations young trainer! HA!"
+#         return true
+#     else
+#         p "You hit the opponents #{ai_name} for #{attack} damage. #{ai_name}'s health is now #{health}"
+#         return false
+#     end
+# end
+
+# def display_attack_result_ai(p_name, ai_name, name, attack, health)
+#     health -= attack
+#     if health <= 0
+#         p "You have been defeated, you are weak! HA!"
+#         return true
+#     else
+#         p "Your #{name} was hit for #{attack} damage. #{name}'s health is now #{health}"
+#         return false
+#     end
 # end
 
 #################### BEGIN APPLICATION RUN ####################
@@ -79,30 +97,35 @@ end
 ai_pokemon = randomize_ai_pokemon(pokemon_array)
 p "The enemy trainer has chosen #{ai_pokemon.name}!"
 
-ai_attack_key_array = ai_pokemon.attacks.values
-
 player_turn = true
 while pokemon_is_defeated == false
     if player_turn == true
         curr_choice = player_pokemon.attacks
         curr_player_attack = prompt.select("It's your turn young Master Trainer! Attack!", curr_choice)
         ai_pokemon.health -= curr_player_attack
-        p "You hit the opponents #{ai_pokemon.name} for #{curr_player_attack} damage. #{ai_pokemon.name}'s health is now #{ai_pokemon.health}"
+        p "----------------------------------------------------------------"
         if ai_pokemon.health <= 0
+            p "#{player_pokemon.name} uses #{player_pokemon.attacks.key(curr_player_attack)}. Enemies health is now 0!"
+            p "You have defeated the enemy's #{ai_pokemon.name}, congratulations young trainer! HA!"
             pokemon_is_defeated = true
         else
-            player_turn = false
+            p "#{player_pokemon.name} uses #{player_pokemon.attacks.key(curr_player_attack)}. Hits the opponents #{ai_pokemon.name} for #{curr_player_attack} damage."
+            p "#{ai_pokemon.name}'s health is now #{ai_pokemon.health}"
         end
-    else
-        # THIS SENTENCE IS THROWING AN ERROR BECAUSE IT EQUATES TO NIL
-        curr_ai_attack = ai_attack_key_array[rand(ai_attack_key_array.length - 1)]
-        player_pokemon.health -= curr_ai_attack
-        p player_pokemon.health
+        player_turn = false
+    else player_turn == false
+        curr_ai_attack = ai_pokemon.attacks.keys[rand(ai_pokemon.attacks.keys.length - 1)]
+        player_pokemon.health -= ai_pokemon.attacks[curr_ai_attack]
+        p "----------------------------------------------------------------"
         if player_pokemon.health <= 0
+            p "#{ai_pokemon.name} uses #{curr_ai_attack}. Your health is now 0!"
+            p "You have been defeated by the enemy's #{ai_pokemon.name}, you have much to learn young trainer! HA!"
             pokemon_is_defeated = true
         else
-            player_turn = true
+            p "#{ai_pokemon.name} hits your #{player_pokemon.name} for #{ai_pokemon.attacks[curr_ai_attack]} damage." 
+            p "#{player_pokemon.name}'s health is now #{player_pokemon.health}"
         end
+        player_turn = true
     end
 end
 
