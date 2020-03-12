@@ -171,6 +171,7 @@ while play_again == true
         if answer.downcase == "y" || answer.downcase == "yes"
             play_again = true
         elsif answer.downcase == "n" || answer.downcase == "no"
+            puts "You will be missed from the Pokémon arena Master trainer, return any time for EPIC POKÉMON BATTLES!!!"
             play_again = false
         else
             puts "please answer yes (y) or no (n), then hit enter."

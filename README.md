@@ -42,8 +42,20 @@ This is implemented in the Pokemon object, and each attack is entered into an ar
 This comes at the end of the program. It will execute a while statement that will continue until the user enters a valid choice. Either the user will want to play again, and will restart the battle phase, or the user will enter no, which will exit the program. If anything else is entered the loop will return an error an loop back up.
 
 ### Instructions & Help
-In the your terminal application, cd to the src directory in the packaged zip. If you have Ruby installed 
-
+In the your terminal application, cd to the src directory in the packaged zip. Install Ruby if you do not have it installed.
+The dependencies for the gems required will need to be installed, enter these commands into the terminal. 
+gem install colorize
+gem install tty-prompt
+gem install tty-box
+gem install tty-font
+Once the gems are installed. Cd to the src folder and enter the command: 
+ruby pokemon.rb
+The program will initiate and you will be greeted by the greeting message and you will be prompted to choose your pokemon. Choose between the four pokemon listed, this will be your pokemon for the duration of this battle instance.
+Once chosen, a pokemon will be generated for the ai and displayed so you can see who your vsing.
+You will then have a choice of your chosen pokemons attack moves to choose from. Scroll through with the arrow keys and hit enter on the attack you want to carry out.
+The enemies pokemon will take damage and be displayed on the screen for you to see, then if their health is not 0, they will carry out their own attack.
+Go through this process until one of your pokemon has reached 0 health.
+You will either be defeated or victorious. The screen will show you which, then you have the choice of starting another battle, or exiting.
 
 
 
