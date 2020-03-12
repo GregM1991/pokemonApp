@@ -32,6 +32,15 @@ A winner will then be displayed with a message of "you win" or "you have been de
 After this, the user will have the choice to play again. The user then enters yes or no, and if neither of these is entered, will be prompted again. If yes, the battle resets and the player begins again by choosing his pokemon. If no the program quits.
 
 ### Implementation Plan
+#### 1. Pokemon Choice
+This will be first implemented after the creation of the individual instances of the Pokemon class. It will be implemented with the gem functionality, and the choice will then load a pokemon instance into a new player_pokemon variable.
+
+#### 2. User Choice of Attacks
+This is implemented in the Pokemon object, and each attack is entered into an array as a new pokemon instance is created. Once again the gem will allow the user to choose between the options and then the choice is loaded into a current_attack variable.
+
+#### 3. Play again choice
+This comes at the end of the program. It will execute a while statement that will continue until the user enters a valid choice. Either the user will want to play again, and will restart the battle phase, or the user will enter no, which will exit the program. If anything else is entered the loop will return an error an loop back up.
+
 
 
 
