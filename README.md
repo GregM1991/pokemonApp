@@ -71,7 +71,17 @@ If you choose to battle again, you will be taken to the choice of pokemon, and y
 
 Any computer built in the past 20 years
 
+## Testing
 
+The way I have designed the application has been specific to reducing the amount of user error output. In almost all cases the user can only choose from a list of input that won't throw any errors and walk the user through the program. 
 
+### Test 1
+
+The first test will be to choose a pokemon from the list that pops up when you are asked to choose a pokemon. You will have the choice of four different pokemon, and you will only be able to choose one.
+You will be limited to the choices, and won't be able to enter anything via the keyboard, other than up and down arrows moving you through the choices available. When you click on any of the pokemon, the expected outcome will be showing a message with your choice of pokemon.
+
+### Test 2
+
+The Second test is to test once you've finished the battle and you're asked whether you want to battle again. You will be prompted to type yes or no. Test these two parameters, as well as test other words/symbols/characters. The expected outcome for not entering either valid inputs, is being told to enter in a valid entry.
 
 
