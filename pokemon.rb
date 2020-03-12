@@ -1,10 +1,11 @@
+################# REQUIRING/SETUP GEMS #################
+
 require 'colorize'
 require 'tty-prompt'
 require 'tty-box'
-
+require 'tty-font'
+font = TTY::Font.new(:starwars)
 prompt = TTY::Prompt.new
-
-
 
 ################# NEW POKEMON CLASS #################
 
@@ -21,7 +22,7 @@ class Pokemon
 
 end
 
-########### Function which creates specific dialouge once user has chosen pokemon #######################################################
+########### Function which creates specific dialouge once user has chosen pokemon ######################################
 
 def pokemon_opening_line(name) 
     case name
@@ -45,6 +46,7 @@ end
 #################### BEGIN APPLICATION RUN ###############################################################################################
 
 play_again = true
+puts font.write("         Pokemon")
 box = TTY::Box.frame(width: 90, height: 8, border: :light,  align: :center, padding: [2, 15]) do
     "Welcome to the Pokémon Stadium, where the fiercest trainers do battle! HA!"
 end
@@ -73,6 +75,8 @@ while play_again == true
     bulbasaur = Pokemon.new("Bulbasaur", 8, {"Vine Whip" => 110, "Razor Leaf" => 100, "Ram" => 60}, "Leaf")
     squirtle = Pokemon.new("Squirtle", 10, {"Bubble" => 110, "Tackle" => 60, "Water Gun" => 140}, "Leaf")
     pokemon_array = [pikachu, charmander, bulbasaur, squirtle]
+
+################# Pokemon choice ###################################################################################
 
     choices = [pikachu.name.colorize(:yellow), charmander.name.colorize(:red), bulbasaur.name.colorize(:green), squirtle.name.colorize(:blue)]
     user_selection = prompt.select("Choose your pokemon!", choices)
@@ -113,6 +117,7 @@ while play_again == true
     pokemon_is_defeated = false
     while pokemon_is_defeated == false
         if player_turn == true
+
             curr_choice = player_pokemon.attacks
             curr_player_attack = prompt.select("It's your turn young Master Trainer! Attack!", curr_choice)
             ai_pokemon.health -= curr_player_attack
@@ -122,21 +127,17 @@ while play_again == true
                     "#{player_pokemon.name} uses #{player_pokemon.attacks.key(curr_player_attack)}. Enemies health is now 0! You have defeated the enemy's #{ai_pokemon.name}, congratulations Master trainer! HA!"
                 end
                 print box
-                # puts "#{player_pokemon.name} uses #{player_pokemon.attacks.key(curr_player_attack)}. Enemies health is now 0!"
-                # puts "You have defeated the enemy's #{ai_pokemon.name}, congratulations Master trainer! HA!"
                 pokemon_is_defeated = true
             else
                 box = TTY::Box.frame(width: 90, height: 8, border: :light,  align: :center, padding: [2, 15], title: {top_left: "  #{player_pokemon.name}  "}) do
                     "#{player_pokemon.name} uses #{player_pokemon.attacks.key(curr_player_attack)}. Hits the opponents #{ai_pokemon.name} for #{curr_player_attack} damage. #{ai_pokemon.name}'s health is now #{ai_pokemon.health}"
                 end
                 print box
-                # puts "#{player_pokemon.name} uses #{player_pokemon.attacks.key(curr_player_attack)}. Hits the opponents #{ai_pokemon.name} for #{curr_player_attack} damage."
-                # puts "#{ai_pokemon.name}'s health is now #{ai_pokemon.health}"
-                # puts "                                                                 "
             end
             player_turn = false
+
         else player_turn == false
-            
+
             curr_ai_attack = ai_pokemon.attacks.keys[rand(ai_pokemon.attacks.keys.length - 1)]
             player_pokemon.health -= ai_pokemon.attacks[curr_ai_attack]
             puts "                                                                 "
@@ -154,8 +155,12 @@ while play_again == true
                 print box
             end
             player_turn = true
+
         end
     end
+
+################# Play again test ##########################################################################################################
+
     box = TTY::Box.frame(width: 90, height: 8, border: :light,  align: :center, padding: [2, 15]) do
         "Care to do battle once more Master Trainer? (y/n)"
     end
