@@ -41,6 +41,8 @@ This is implemented in the Pokemon object, and each attack is entered into an ar
 #### 3. Play again choice
 This comes at the end of the program. It will execute a while statement that will continue until the user enters a valid choice. Either the user will want to play again, and will restart the battle phase, or the user will enter no, which will exit the program. If anything else is entered the loop will return an error an loop back up.
 
+### Instructions & Help
+In the your terminal application, cd to the src directory in the packaged zip. If you have Ruby installed 
 
 
 

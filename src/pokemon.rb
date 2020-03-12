@@ -162,7 +162,7 @@ while play_again == true
 ################# Play again test ##########################################################################################################
 
     box = TTY::Box.frame(width: 90, height: 8, border: :light,  align: :center, padding: [2, 15]) do
-        "Care to do battle once more Master Trainer? (y/n)"
+        "Care to do battle once more Master Trainer? (y/n) After typing, hit enter."
     end
     print box
     
@@ -173,7 +173,7 @@ while play_again == true
         elsif answer.downcase == "n" || answer.downcase == "no"
             play_again = false
         else
-            puts "please answer yes (y) or no (n)"
+            puts "please answer yes (y) or no (n), then hit enter."
         end
     end
 end
